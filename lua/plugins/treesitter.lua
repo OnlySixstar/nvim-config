@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   -- add different language
-  ensure_installed = {"vim","help","bash","c","cpp","lua","python","java","make","cmake"},
+  ensure_installed = {"vim","help","bash","c","cpp","lua","python","java","make","cmake","make"},
 
   highlight = { enable = true },
   indent = { enable = true },

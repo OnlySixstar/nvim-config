@@ -32,10 +32,10 @@ return require('packer').startup(function(use)
   -- LSP config
   use {
     "williamboman/mason.nvim",
+    run = ":MasonUpdate",
     "williamboman/mason-lspconfig.nvim", --bridges mason.nvim with the lspconfig plugin - making it easier to use both plugins together
     "neovim/nvim-lspconfig",
     "jose-elias-alvarez/null-ls.nvim",
-
   }
   -- AUTO completement
   use ("hrsh7th/nvim-cmp") --The Completion Plugin
@@ -49,7 +49,7 @@ return require('packer').startup(function(use)
   use ("numToStr/Comment.nvim") -- gcc and gc Comment
   use ("windwp/nvim-autopairs") -- autopairs
 
-  use ("akinsho/bufferline.nvim")
+  use {"akinsho/bufferline.nvim", require = 'nvim-tree/nvim-web-devicons'}
   use ("lewis6991/gitsigns.nvim")
 
   -- telescope
@@ -58,7 +58,15 @@ return require('packer').startup(function(use)
 -- or                            , branch = '0.1.x',
   requires = { {'nvim-lua/plenary.nvim'} }
 }
-
+  --unit test and debug
+  use('vim-test/vim-test')
+  use 'mfussenegger/nvim-dap'
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "antoinemadec/FixCursorHold.nvim"
+    }
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

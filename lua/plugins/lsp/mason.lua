@@ -4,6 +4,7 @@ local servers = {
 	"jdtls",
   "clangd",
   "cmake",
+  "lemminx",
 }
 
 local settings = {
