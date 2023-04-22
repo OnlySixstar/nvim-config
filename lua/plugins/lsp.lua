@@ -1,35 +1,31 @@
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
+local status_ok, _ = pcall(require, "lspconfig")
+if not status_ok then
+  return
+end
 
+local servers = {
+  "clangd",
+	"lua_ls",
+  "jdtls",
 
-require("mason-lspconfig").setup({
-  ensure_installed = {
-    "lua_ls",
-  },
-})
+}
 
- -- Set up lspconfig.
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require('lspconfig')['lua_ls'].setup {
-    capabilities = capabilities
-  }
-  require('lspconfig')['clangd'].setup {
-    capabilities = capabilities
-  }
-  require('lspconfig')['jdtls'].setup {
-    capabilities = capabilities
-  }
-  require('lspconfig')['lua_ls'].setup{
-    capabilities = capabilities
-  }
-  require('lspconfig')['cmake'].setup{
-    capabilities = capabilities
-  }
+local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_status_ok then
+	return
+end
+
+local opts = {}
+
+for _, server in pairs(servers) do
+	opts = {
+		on_attach = require("plugins.lsp.handlers").on_attach,
+		capabilities = require("plugins.lsp.handlers").capabilities,
+	}
+
+	server = vim.split(server, "@")[1]
+	lspconfig[server].setup(opts)
+end
+-- require "plugins.lsp.mason"
+require("plugins.lsp.handlers").setup()
+require "plugins.lsp.null-ls"

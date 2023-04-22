@@ -31,9 +31,9 @@ return require('packer').startup(function(use)
   use("p00f/nvim-ts-rainbow")
   -- LSP config
   use {
-    "williamboman/mason.nvim",
-    run = ":MasonUpdate",
-    "williamboman/mason-lspconfig.nvim", --bridges mason.nvim with the lspconfig plugin - making it easier to use both plugins together
+   -- "williamboman/mason.nvim",
+   -- run = ":MasonUpdate",
+   -- "williamboman/mason-lspconfig.nvim", --bridges mason.nvim with the lspconfig plugin - making it easier to use both plugins together
     "neovim/nvim-lspconfig",
     "jose-elias-alvarez/null-ls.nvim",
   }
