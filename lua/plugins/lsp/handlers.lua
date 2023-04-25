@@ -73,7 +73,8 @@ end
 
 M.on_attach = function(client, bufnr)
 	if client.name == "clangd" then
-		client.server_capabilities.documentFormattingProvider = true 
+		client.server_capabilities.documentFormattingProvider = true
+    client.server_capabilities.offsetEncoding = {"utf-16"}
 	end
 
 	if client.name == "sumneko_lua" then
